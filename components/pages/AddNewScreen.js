@@ -19,7 +19,7 @@ export default class AddNewsScreen extends React.Component {
         return (
             <View>
               <View>
-               <Text>Hej AddNewScreen</Text>
+               <Text>Hej Tissemand</Text>
               </View>
             </View>
         );
