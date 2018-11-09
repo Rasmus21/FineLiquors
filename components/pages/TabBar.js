@@ -3,7 +3,6 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import HomeScreen from './HomeScreen';
 import CameraScreen from './CameraScreen';
 import DetailsScreen from './DetailsScreen';
-import CameraScreen from './CameraScreen'; 
 import AddNewScreen from './AddNewScreen';
 import SettingsScreen from './SettingsScreen';
 import { Ionicons } from '@expo/vector-icons';
