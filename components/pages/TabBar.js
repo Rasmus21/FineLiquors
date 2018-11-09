@@ -11,6 +11,11 @@ const HomeStack = createStackNavigator({
   Details: { screen: DetailsScreen },
 });
 
+const HomeStack = createStackNavigator({
+  Home: { screen: HomeScreen },
+  Details: { screen: DetailsScreen },
+});
+
 const AddNewStack = createStackNavigator({
   AddNew: { screen: AddNewScreen }, 
   Details: { screen: DetailsScreen }, 
