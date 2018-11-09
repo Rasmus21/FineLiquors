@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import HomeScreen from './HomeScreen'; 
+import HomeScreen from './HomeScreen';
+import CameraScreen from './CameraScreen';
 import DetailsScreen from './DetailsScreen';
 import CameraScreen from './CameraScreen'; 
 import AddNewScreen from './AddNewScreen';
