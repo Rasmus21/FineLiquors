@@ -17,7 +17,7 @@ export default class DetailssScreen extends React.Component {
       render() {
         return (
             <View>
-              <Text>Hej Details</Text>
+              <Text>Hej Sørensen</Text>
             </View>
         );
       }

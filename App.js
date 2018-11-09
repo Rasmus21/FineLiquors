@@ -5,7 +5,6 @@ import LoginForm from './components/LoginForm';
 import TabBar from './components/pages/TabBar';
 import HomeScreen from './components/pages/HomeScreen';
 
-
 export default class App extends React.Component {
 constructor(props) {
   super(props);
