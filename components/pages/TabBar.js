@@ -3,12 +3,18 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import HomeScreen from './HomeScreen';
 import CameraScreen from './CameraScreen';
 import DetailsScreen from './DetailsScreen';
+import ListScreen from './ListScreen';
 import AddNewScreen from './AddNewScreen';
 import SettingsScreen from './SettingsScreen';
 import { Ionicons } from '@expo/vector-icons';
 
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
+  Details: { screen: DetailsScreen },
+});
+
+const ListStack = createStackNavigator({
+  List: { screen: ListScreen },
   Details: { screen: DetailsScreen },
 });
 
@@ -30,6 +36,7 @@ const SettingsStack = createStackNavigator({
 export default createBottomTabNavigator(
   {
     Home: { screen: HomeStack },
+    List: { screen: ListStack },
     Camera: { screen: CameraStack }, 
     AddNew: { screen: AddNewStack }, 
     Settings: { screen: SettingsStack },   
@@ -45,6 +52,8 @@ export default createBottomTabNavigator(
         if (routeName === 'Home') {
           iconName = 'md-home';
         } else if (routeName === 'Camera') {
+          iconName = 'md-information-circle';
+        } else if (routeName === 'List') {
           iconName = 'md-information-circle';
         } else if (routeName === 'AddNew') {
           iconName = 'md-information-circle';
