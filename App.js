@@ -13,15 +13,17 @@ constructor(props) {
   }
 }
 
-  componentWillMount() {
-    firebase.initializeApp({
-      apiKey: "AIzaSyCnEaTaSYMYafEqyoJj5HpPDhxUEGGcFhk",
-      authDomain: "fineliquors-20a7f.firebaseapp.com",
-      databaseURL: "https://fineliquors-20a7f.firebaseio.com",
-      projectId: "fineliquors-20a7f",
-      storageBucket: "fineliquors-20a7f.appspot.com",
-      messagingSenderId: "348822207623"
-    });
+ 
+componentWillMount() {
+  firebase.initializeApp({
+    apiKey: "AIzaSyCnEaTaSYMYafEqyoJj5HpPDhxUEGGcFhk",
+    authDomain: "fineliquors-20a7f.firebaseapp.com",
+    databaseURL: "https://fineliquors-20a7f.firebaseio.com",
+    projectId: "fineliquors-20a7f",
+    storageBucket: "fineliquors-20a7f.appspot.com",
+    messagingSenderId: "348822207623"
+  });
+
     firebase.auth().onAuthStateChanged(user => {
       if(user) {
         this.setState({ loggedIn: true });

@@ -8,7 +8,7 @@ export default class AddNewScreen extends React.Component {
     super(props);
 
     this.state={
-      liquor: '',
+      type: '',
       title: '',
       error: '',
       image: 'https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg'
@@ -21,12 +21,12 @@ export default class AddNewScreen extends React.Component {
 
   
     writeLiquor(){
-      const liquor = this.state.liquor;
+      const type = this.state.type;
       const title = this.state.title;
       const image = this.state.image;
 
-      firebase.database().ref('Liquor/').push({
-          liquor,
+      firebase.database().ref('liquors/').push({
+          type,
           title,
           image
       }).then((data)=>{
@@ -43,8 +43,8 @@ export default class AddNewScreen extends React.Component {
            <TextInput
           label='Liquor'
             placeholder='Liquor'
-            value={this.state.liquor}
-            onChangeText={liquor => this.setState({ liquor })}
+            value={this.state.tupe}
+            onChangeText={type => this.setState({ type })}
           />
           <TextInput
             label='Flaskens Titel'

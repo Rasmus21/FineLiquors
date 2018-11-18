@@ -1,64 +1,89 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, FlatList } from 'react-native';
-import {ListItem} from 'react-native-elements';
-
-
+import { ActivityIndicator, FlatList, View, Button, Image } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import firebase from 'firebase';
 
 export default class ListScreen extends React.Component {
+
   constructor(props) {
+
     super(props);
-    this.state ={
-
+    this.state = {
+      isLoading: true
     }
+    //Android viser en warning med en timer. Dette får RN til at ignorere fejlen. Der kan læses mere om fejlen her 
+    // https://github.com/firebase/firebase-js-sdk/issues/97 
+    console.ignoredYellowBox = [
+      'Setting a timer'
+      ];
   }
-    static navigationOptions = {
-      title: "Albums"
-    };
 
-    componentDidMount(){
-      this.getAlbumsFromApiAsync();
-    }
+  static navigationOptions = {
+    title: "List"
+  };
 
-    getAlbumsFromApiAsync() {
-      return fetch('http://rallycoding.herokuapp.com/api/music_albums')
-      .then((response) => response.json())
-      .then((responseJson) => {
+  componentDidMount() {
+    this.getAlbumsFromApiAsync();
+  }
 
-      this.setState({
-        dataSource: responseJson
+  getAlbumsFromApiAsync() {
+
+    var that = this;
+
+    return firebase.database().ref('liquors').on('value', function (snapshot) {
+        var liquors = Object.values(snapshot.val());
+        //Brug artist ID til at hente fulde navn og erstat dataen. 
+        //Da dataen i øvelserne kun er fra Taylor Swift, går vi bare ind i første object i Arrayet, 
+        //da vi ved alle objekter har samme artist. Er der forskellige, kan man loope igennem arrayet og erstatte variabler
+        var typeID = liquors[0].type;
+
+        //Lav et nyt database-kald:
+        firebase.database().ref('types/' + typeID).once('value', function (snapshotType) {
+
+
+
+          that.setState({
+            isLoading: false,
+            dataSource: liquors,
+          });
+        });
+        
       });
-
-    })
-    .catch((error) => {
-      console.error(error);
-
-    });
   }
 
-    render() {
+
+  render() {
+    if (this.state.isLoading) {
       return (
-       <FlatList
-       data={this.state.dataSource}
-       renderItem={({ item}) => 
+        <View style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'stretch' }}>
+          <ActivityIndicator size='large' />
+        </View>
+      )
+    }
+
+    return (
+      <View>
+      <FlatList
+        data={this.state.dataSource}
+        renderItem={({ item }) =>
           <ListItem
-          avatar={
-            <Image
-            style={{width: 65, height: 65}}
-            source={{uri: item.image}} />
-          }
-          title={item.title}
-          titleStyle={{color: 'black', fontWeight: 'bold'}}
-          subtitleStyle={{color: 'black'}}
-          subtitle={item.artist}
-          chevronColor='black'
-          onPress={() => alert("Album trykket på: " + item.title )}
-          containerStyle={{backgraoundColor: 'white'}}
+            avatar={
+              <Image
+                style={{ width: 65, height: 65 }}
+                source={{ uri: item.image }} />
+            }
+            title={item.title}
+            titleStyle={{ color: 'tomato', fontWeight: 'bold' }}
+            subtitleStyle={{ color: 'tomato' }}
+            subtitle={item.type}
+            chevronColor='tomato'
+            onPress={() => this.props.navigation.navigate('Details', item)}
+            containerStyle={{ backgroundColor: 'white' }}
           />
-      }
-     
-      keyExtractor={(item, index) => index.toString()}
-       />
-        );
-      }
-    }  
-  
+        }
+        keyExtractor={(item, index) => index.toString()}
+      />
+      </View>
+    );
+  }
+}
