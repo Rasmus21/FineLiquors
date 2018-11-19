@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View } from 'react-native';
-import { Permissions, Camera, MediaLibrary } from 'expo'; 
+import { Permissions, Camera, MediaLibrary, BarCodeScanner } from 'expo'; 
 
 export default class CameraScreen extends React.Component {
   constructor(props) {
@@ -12,6 +12,10 @@ export default class CameraScreen extends React.Component {
   }
 }
 
+static navigationOptions = {
+    title: "Camera"
+  };
+
 async componentWillMount() {
   const { status } = await Permissions.askAsync(Permissions.CAMERA);
   await Permissions.askAsync(Permissions.CAMERA_ROLL); 
@@ -19,6 +23,31 @@ async componentWillMount() {
   //Permission for MediaLibrary
 }
 
+render() { 
+    const { hasCameraPermission } = this.state; 
+
+    if (hasCameraPermission === null) {
+        return <Text>Requesting for camera permission</Text>; 
+    } else if (hasCameraPermission === false) {
+        return <Text>No access to camera</Text>; 
+    } else {
+        return (
+            <View style={{flex: 1}}>
+                <BarCodeScanner
+                    onBarCodeRead={this._handlBarCodeRead}
+                    style={StyleSheet.absoluteFill}
+                />
+            </View>
+        );
+    }
+}
+
+_handlBarCodeRead = ({ type, data }) => {
+    alert(`Bar code with type ${type} and data ${data} has been scanned`);
+    }
+}
+
+/*
 snap = async () => {
   let photo = await this.camera.takePictureAsync(); 
   console.log(photo); 
@@ -58,6 +87,7 @@ snap = async () => {
     );
   }
 }
+*/
 
 const styles = StyleSheet.create({
   container: {
@@ -66,4 +96,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonStyle: {
+    borderWidth:1,
+    borderColor:'rgba(0,0,0,0.2)',
+    alignItems:'center',
+    justifyContent:'center',
+    width:100,
+    height:100,
+    backgroundColor:'#fff',
+    borderRadius:100,
+  }
 });
