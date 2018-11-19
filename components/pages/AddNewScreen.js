@@ -42,7 +42,7 @@ export default class AddNewScreen extends React.Component {
               <TextInput
               label='Liquor'
               placeholder='Liquor'
-              value={this.state.tupe}
+              value={this.state.type}
               onChangeText={type => this.setState({ type })}
               />
             </View>
