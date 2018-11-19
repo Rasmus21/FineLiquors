@@ -27,7 +27,6 @@ export default class ListScreen extends React.Component {
   }
 
   getAlbumsFromApiAsync() {
-
     var that = this;
 
     return firebase.database().ref('liquors').on('value', function (snapshot) {
@@ -70,7 +69,8 @@ export default class ListScreen extends React.Component {
             avatar={
               <Image
                 style={{ width: 65, height: 65 }}
-                source={{ uri: item.image }} />
+                source={{ uri: item.image }} 
+              />
             }
             title={item.title}
             titleStyle={{ color: 'tomato', fontWeight: 'bold' }}

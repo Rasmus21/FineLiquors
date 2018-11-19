@@ -40,9 +40,11 @@ export default class AddNewScreen extends React.Component {
         <View style={styles.container}>
             <View style={styles.input}>
               <TextInput
-              label='Liquor'
-              placeholder='Liquor'
-              value={this.state.type}
+
+              label='Hvilen type af sprut drejer det sig om?'
+              placeholder='Sprut navn'
+              value={this.state.tupe}
+
               onChangeText={type => this.setState({ type })}
               />
             </View>
@@ -63,14 +65,10 @@ export default class AddNewScreen extends React.Component {
               />
             </View>
           <TextInput editable={false} value={this.state.image}/>
-
         <Text style={styles.errorTextStyle}>
           {this.state.error}
         </Text>
             <Button title='Tilføj anmeldelse' onPress={this.writeLiquor.bind(this)}/>
-
-
-
         </View>
     );
   }
