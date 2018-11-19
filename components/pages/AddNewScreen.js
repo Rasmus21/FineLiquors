@@ -9,7 +9,8 @@ export default class AddNewScreen extends React.Component {
       type: '',
       title: '',
       error: '',
-      image: 'https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg'
+      image: 'https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg', 
+      text: '',
     }
   }
   static navigationOptions = {
