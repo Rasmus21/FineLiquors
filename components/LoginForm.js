@@ -25,7 +25,7 @@ signIn() {
             .then(this.onLoginSuccess.bind(this))
             .catch(this.onLoginFail.bind(this));
 }
-
+ 
 onLoginSuccess() {
     this.setState({
         email: '',
@@ -68,7 +68,7 @@ onLoginFail(err) {
                         
                         {this.renderButton()}
 
-                            
+                    
                       
                         <View style={styles.buttonContainer}>
                             <Text style={styles.buttonText}> If you haven’t signed up yet, do this here: </Text>
@@ -83,9 +83,9 @@ onLoginFail(err) {
                     <View>
                         <SignUpForm />
                         <Button title="Go back" onPress={() => this.setState({hasLogin : true})}/>
-                        //Denne knap bruges til at navigere tilbage til SignUp
                     </View>
-                );
+                );  
+                //Denne button bringer os tilbage til sign up.
             default: 
                     return <ActivityIndicator size='small' />
         }
