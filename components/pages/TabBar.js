@@ -4,7 +4,7 @@ import HomeScreen from './HomeScreen';
 import CameraScreen from './CameraScreen';
 import DetailsScreen from './DetailsScreen';
 import ListScreen from './ListScreen';
-import AddNewScreen from './AddNewScreen';
+import ReviewScreen from './ReviewScreen';
 import SettingsScreen from './SettingsScreen';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -23,8 +23,8 @@ const CameraStack = createStackNavigator({
   Details: { screen: DetailsScreen },
 });
 
-const AddNewStack = createStackNavigator({
-  AddNew: { screen: AddNewScreen }, 
+const ReviewStack = createStackNavigator({
+  Review: { screen: ReviewScreen }, 
   Details: { screen: DetailsScreen }, 
 }); 
 
@@ -38,7 +38,7 @@ export default createBottomTabNavigator(
     Home: { screen: HomeStack },
     List: { screen: ListStack },
     Camera: { screen: CameraStack }, 
-    AddNew: { screen: AddNewStack }, 
+    Review: { screen: ReviewStack }, 
     Settings: { screen: SettingsStack },   
   },
   {
@@ -52,11 +52,11 @@ export default createBottomTabNavigator(
         if (routeName === 'Home') {
           iconName = 'md-home';
         } else if (routeName === 'Camera') {
-          iconName = 'md-information-circle';
+          iconName = 'ios-barcode';
         } else if (routeName === 'List') {
-          iconName = 'md-information-circle';
-        } else if (routeName === 'AddNew') {
-          iconName = 'md-information-circle';
+          iconName = 'md-search';
+        } else if (routeName === 'Review') {
+          iconName = 'ios-create';
         } else if (routeName === 'Settings') {
           iconName = 'md-information-circle';
         }

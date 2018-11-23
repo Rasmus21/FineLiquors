@@ -14,7 +14,7 @@ export default class CameraScreen extends React.Component {
 }
 
 static navigationOptions = {
-    title: "Camera"
+    title: "Barcode scanner"
   };
 
 async componentWillMount() {

@@ -14,7 +14,7 @@ export default class AddNewScreen extends React.Component {
     }
   }
   static navigationOptions = {
-    title: "Tilføj anmeldelse"
+    title: "Add Review"
   };
   
     writeLiquor(){
@@ -38,20 +38,21 @@ export default class AddNewScreen extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+            <View>
+              <Text h1 style={styles.headline}>Review</Text>
+            </View>
             <View style={styles.input}>
               <TextInput
-
               label='Hvilen type af sprut drejer det sig om?'
-              placeholder='Sprut navn'
-              value={this.state.tupe}
-
+              placeholder='Liquor name'
+              value={this.state.type}
               onChangeText={type => this.setState({ type })}
               />
             </View>
             <View style={styles.input}>
               <TextInput
                 label='Flaskens Titel'
-                placeholder='Flaskens Titel'
+                placeholder='Bottle title'
                 value={this.state.title}
                 onChangeText={title => this.setState({ title })}
               />
@@ -59,7 +60,7 @@ export default class AddNewScreen extends React.Component {
             <View style={styles.input1}>
               <TextInput
                 label='Anmeldelse'
-                placeholder='Anmeldelse'
+                placeholder='Review'
                 value={this.state.text}
                 onChangeText={text => this.setState({ text })}
               />
@@ -68,7 +69,7 @@ export default class AddNewScreen extends React.Component {
         <Text style={styles.errorTextStyle}>
           {this.state.error}
         </Text>
-            <Button title='Tilføj anmeldelse' onPress={this.writeLiquor.bind(this)}/>
+            <Button title='Add your review' onPress={this.writeLiquor.bind(this)}/>
         </View>
     );
   }
@@ -80,6 +81,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'stretch',
     justifyContent: 'center',
+  },
+  headline: {
+    fontSize: 40, 
+    alignSelf: 'center', 
+    alignItems: 'stretch',
   },
   errorTextStyle: {
     fontSize: 20,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ActivityIndicator } from 'react-native';
 import firebase from 'firebase'; 
-
+import { CheckBox } from "react-native-elements";
 
 export default class SignUpForm extends React.Component {
 constructor(props) {
@@ -21,7 +21,7 @@ onButtonPress() {
         loading: true
     }); 
 
-    firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
+    firebase.auth.Auth.prototype.createUserWithEmailAndPassword(email, password)
             .then(this.onSignUpSuccess.bind(this))
             .catch(this.onSignUpFailed.bind(this));
 }
@@ -30,7 +30,7 @@ onSignUpSuccess() {
     this.setState({
         email: '',
         password: '',
-        loading: false,
+        loading: true,
         error: '' }); 
     alert("User created successfully");
 }
@@ -58,6 +58,12 @@ onSignUpFailed(err) {
                 secureTextEntry={true}
                 onChangeText={password => this.setState({ password })}
             />
+            <CheckBox
+                center
+                title='18 or older?'
+                checked={this.state.checked}
+                onPress={() => this.setState({checked: !this.state.checked})}
+            />
             <Text style={StyleSheet.errorTextStyle}>
               {this.state.error}
             </Text>
@@ -66,7 +72,6 @@ onSignUpFailed(err) {
         );
     }
     
-
     renderButton() {
         if(this.state.loading) {
             return <ActivityIndicator size='small' />
@@ -83,8 +88,13 @@ onSignUpFailed(err) {
             height: 40,
             backgroundColor: '#98999A',
             marginBottom: 10,
+            marginLeft: 20,
+            marginRight: 20,
             padding: 10,
             color: '#060606'
         },
+        container1: {
+            alignItems: 'center',
+        }
       });
   
