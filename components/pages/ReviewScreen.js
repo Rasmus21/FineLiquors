@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Button, StyleSheet, Text, TextInput} from 'react-native';
 import firebase from 'firebase';
+import StarRating from 'react-native-star-rating';
 
 export default class AddNewScreen extends React.Component {
   constructor(props) {
@@ -10,13 +11,14 @@ export default class AddNewScreen extends React.Component {
       title: '',
       error: '',
       image: 'https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg', 
-      rText: '',
-    }
+      text: '',
+      starCount: 3.5
+    };
   }
   static navigationOptions = {
     title: "Add Review"
   };
-  
+
     writeLiquor(){
       const type = this.state.type;
       const title = this.state.title;
@@ -33,6 +35,12 @@ export default class AddNewScreen extends React.Component {
           //error callback
           console.log('error ' , error)
       })
+  }
+
+  onStarRatingPress(rating) {
+    this.setState({
+      starCount: rating
+    });
   }
 
   render() {
@@ -65,6 +73,17 @@ export default class AddNewScreen extends React.Component {
                 onChangeText={text => this.setState({ text})}
               />
             </View>
+            <StarRating
+              disabled={false}
+              emptyStar={'ios-star-outline'}
+              fullStar={'ios-star'}
+              halfStar={'ios-star-half'}
+              iconSet={'Ionicons'}
+              maxStars={7}
+              rating={this.state.starCount}
+              selectedStar={(rating) => this.onStarRatingPress(rating)}
+              fullStarColor={'red'}
+            />
           <TextInput editable={false} value={this.state.image}/>
         <Text style={styles.errorTextStyle}>
           {this.state.error}
@@ -137,5 +156,6 @@ const styles = StyleSheet.create({
     color: '#06121C',
     textAlign: 'center',
     fontWeight: '700'
-  } 
+  },
+
 });

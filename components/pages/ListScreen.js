@@ -4,9 +4,7 @@ import { ListItem, SearchBar } from 'react-native-elements';
 import firebase from 'firebase';
 
 export default class ListScreen extends React.Component {
-
   constructor(props) {
-
     super(props);
     this.state = {
       isLoading: true
