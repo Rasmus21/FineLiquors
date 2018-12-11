@@ -89,7 +89,7 @@ export default class ListScreen extends React.Component {
     }
 
     return (
-      <View style = {{flex: 1, BackgroundColor: 'white'}}>
+      <View style = {{flex: 1, backgroundColor: 'white'}}>
         <SearchBar
         lightTheme
         value={this.state.text}
