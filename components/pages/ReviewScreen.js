@@ -12,7 +12,7 @@ export default class AddNewScreen extends React.Component {
       error: '',
       image: 'https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg', 
       text: '',
-      starCount: 3.5
+      starCount: 2.5
     };
   }
   static navigationOptions = {
@@ -73,17 +73,19 @@ export default class AddNewScreen extends React.Component {
                 onChangeText={text => this.setState({ text})}
               />
             </View>
-            <StarRating
-              disabled={false}
-              emptyStar={'ios-star-outline'}
-              fullStar={'ios-star'}
-              halfStar={'ios-star-half'}
-              iconSet={'Ionicons'}
-              maxStars={7}
-              rating={this.state.starCount}
-              selectedStar={(rating) => this.onStarRatingPress(rating)}
-              fullStarColor={'red'}
-            />
+            <View style={styles.input2}>
+              <StarRating
+                disabled={false}
+                emptyStar={'ios-star-outline'}
+                fullStar={'ios-star'}
+                halfStar={'ios-star-half'}
+                iconSet={'Ionicons'}
+                maxStars={5}
+                rating={this.state.starCount}
+                selectedStar={(rating) => this.onStarRatingPress(rating)}
+                fullStarColor={'red'}
+              />
+            </View>
           <TextInput editable={false} value={this.state.image}/>
         <Text style={styles.errorTextStyle}>
           {this.state.error}
@@ -99,12 +101,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'stretch',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   headline: {
     fontSize: 40, 
     alignSelf: 'center', 
-    alignItems: 'stretch',
+    alignItems: 'stretch'
   },
   errorTextStyle: {
     fontSize: 20,
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 10,
     marginBottom: 10,
-    padding: 10, 
+    padding: 10 
   },
   input1: {
     alignItems: 'stretch', 
@@ -146,7 +148,25 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     padding: 10, 
-    height: 200,
+    height: 200
+  },
+  input2: {
+    alignItems: 'stretch', 
+    backgroundColor: '#98999A',
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#ddd',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 10,
   },
   buttonContainer: {
     backgroundColor: '#9FB4C4',
@@ -157,5 +177,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700'
   },
-
 });

@@ -57,8 +57,8 @@ export default class ListScreen extends React.Component {
           global.numberOfLiquors ++;
         }); 
 
-        const allLiquors = liquors.filter( item =>{
-         if(item.notThere = "Ikke eksisterende") {
+        const allLiquors = liquors.filter( item => {
+         if(item.notThere === "Ikke eksisterende") {
           return item; 
           }
         })
