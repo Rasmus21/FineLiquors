@@ -15,27 +15,25 @@ constructor(props) {
 
 onButtonPress() {
     const { email, password } = this.state; 
-
     this.setState({
         error: '', 
         loading: true
     }); 
-
-    firebase.auth.Auth.prototype.createUserWithEmailAndPassword(email, password)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(this.onSignUpSuccess.bind(this))
             .catch(this.onSignUpFailed.bind(this));
 }
 
 onSignUpSuccess() {
     this.setState({
-        email: '',
-        password: '',
-        loading: true,
+        email: '', 
+        password: '', 
+        loading: false, 
         error: '' }); 
-    alert("User created successfully");
-}
+    alert("User created successfully"); 
+} 
 
-onSignUpFailed(err) {
+onSignUpFailed(err) { 
     this.setState({
         loading: false,
         error: err.message });
@@ -44,8 +42,8 @@ onSignUpFailed(err) {
     render() {
         return (
           <View>
-            <TextInput style={styles.container}
-            label='Username'
+            <TextInput style={styles.container} 
+            label='Username' 
                 placeholder='user@gmail.com'
                 placeholderTextColor='#060606'
                 value={this.state.email} 

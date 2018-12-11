@@ -10,7 +10,7 @@ export default class AddNewScreen extends React.Component {
       title: '',
       error: '',
       image: 'https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg', 
-      text: '',
+      rText: '',
     }
   }
   static navigationOptions = {
@@ -62,7 +62,7 @@ export default class AddNewScreen extends React.Component {
                 label='Anmeldelse'
                 placeholder='Review'
                 value={this.state.text}
-                onChangeText={text => this.setState({ text })}
+                onChangeText={text => this.setState({ text})}
               />
             </View>
           <TextInput editable={false} value={this.state.image}/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, FlatList, View, Button, Image } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ListItem, SearchBar } from 'react-native-elements';
 import firebase from 'firebase';
 
 export default class ListScreen extends React.Component {
@@ -22,33 +22,63 @@ export default class ListScreen extends React.Component {
     title: "List"
   };
 
+  handleSearch = text => {
+    const result = this.state.dataSource.filter(item => {
+      if (item.title.includes(text) || item.type.includes(text)) {
+        return item; 
+      }
+    })
+    this.setState ({dataSource: result, 
+                    text: text})
+  };
+  
+
+  handleClear = () => { 
+    const clearData = this.state.data
+    this.setState({dataSource: clearData, text: ""})
+  }; 
+
   componentDidMount() {
-    this.getAlbumsFromApiAsync();
+    this.getLiquorsFromApiAsync();
   }
 
-  getAlbumsFromApiAsync() {
+  getLiquorsFromApiAsync() {
     var that = this;
 
-    return firebase.database().ref('liquors').on('value', function (snapshot) {
+    return firebase
+    .database()
+    .ref('liquors')
+    .on('value', function (snapshot) {
         var liquors = Object.values(snapshot.val());
         //Brug artist ID til at hente fulde navn og erstat dataen. 
         //Da dataen i øvelserne kun er fra Taylor Swift, går vi bare ind i første object i Arrayet, 
         //da vi ved alle objekter har samme artist. Er der forskellige, kan man loope igennem arrayet og erstatte variabler
-        var typeID = liquors[0].type;
+        global.numberOfLiquors = 1; 
 
+        liquors.forEach( item => {
+          global.numberOfLiquors ++;
+        }); 
+
+        const allLiquors = liquors.filter( item =>{
+         if(item.notThere = "Ikke eksisterende") {
+          return item; 
+          }
+        })
+
+        var typeID = liquors[0].type;
         //Lav et nyt database-kald:
         firebase.database().ref('types/' + typeID).once('value', function (snapshotType) {
-
-
-
+        
           that.setState({
             isLoading: false,
             dataSource: liquors,
+            data: allLiquors, 
           });
+          return allLiquors;
         });
-        
       });
   }
+
 
 
   render() {
@@ -61,28 +91,35 @@ export default class ListScreen extends React.Component {
     }
 
     return (
-      <View>
-      <FlatList
-        data={this.state.dataSource}
-        renderItem={({ item }) =>
-          <ListItem
-            avatar={
-              <Image
-                style={{ width: 65, height: 65 }}
-                source={{ uri: item.image }} 
-              />
-            }
-            title={item.title}
-            titleStyle={{ color: 'tomato', fontWeight: 'bold' }}
-            subtitleStyle={{ color: 'tomato' }}
-            subtitle={item.type}
-            chevronColor='tomato'
-            onPress={() => this.props.navigation.navigate('Details', item)}
-            containerStyle={{ backgroundColor: 'white' }}
-          />
-        }
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <View style = {{flex: 1, BackgroundColor: 'white'}}>
+        <SearchBar
+        lightTheme
+        value={this.state.text}
+        onChangeText={this.handleSearch}
+        onClear={this.handleClear}
+        placeholder="Search here..."
+        />
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={({ item }) =>
+            <ListItem
+              avatar={
+                <Image
+                  style={{ width: 65, height: 65 }}
+                  source={{ uri: item.image }} 
+                />
+              }
+              title={item.title}
+              titleStyle={{ color: 'tomato', fontWeight: 'bold' }}
+              subtitleStyle={{ color: 'tomato' }}
+              subtitle={item.type}
+              chevronColor='tomato'
+              onPress={() => this.props.navigation.navigate('Details', item)}
+              containerStyle={{ backgroundColor: 'white' }}
+            />
+          }
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
     );
   }

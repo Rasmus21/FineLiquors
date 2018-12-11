@@ -59,23 +59,16 @@ onLoginFail(err) {
                             value={this.state.password}
                             secureTextEntry={true}
                             onChangeText={password => this.setState({ password })}
-                        />    
-                    
+                        />   
                         <Text style={StyleSheet.errorTextStyle}>
                             {this.state.error}
                         </Text>      
-                      
-                        
                         {this.renderButton()}
-
-                    
-                      
                         <View style={styles.buttonContainer}>
                             <Text style={styles.buttonText}> If you haven’t signed up yet, do this here: </Text>
                                 <Button title='SignUp' onPress={() => this.setState({hasLogin : false })}>
                             </Button>
                         </View>
-
                     </View>
                 );    
             case false: 
