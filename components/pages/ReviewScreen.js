@@ -15,10 +15,6 @@ export default class AddNewScreen extends React.Component {
       starCount: 2.5
     };
   }
-  static navigationOptions = {
-    title: "Add Review"
-  };
-
     writeLiquor(){
       const type = this.state.type;
       const title = this.state.title;
@@ -80,13 +76,12 @@ export default class AddNewScreen extends React.Component {
                 fullStar={'ios-star'}
                 halfStar={'ios-star-half'}
                 iconSet={'Ionicons'}
-                maxStars={5}
+                maxStars={8}
                 rating={this.state.starCount}
                 selectedStar={(rating) => this.onStarRatingPress(rating)}
                 fullStarColor={'red'}
               />
             </View>
-          <TextInput editable={false} value={this.state.image}/>
         <Text style={styles.errorTextStyle}>
           {this.state.error}
         </Text>
