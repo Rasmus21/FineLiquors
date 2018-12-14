@@ -1,11 +1,12 @@
 import React from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import HomeScreen from './HomeScreen';
-import CameraScreen from './CameraScreen';
+import CameraScreen from "./CameraScreen";
 import DetailsScreen from './DetailsScreen';
 import ListScreen from './ListScreen';
 import ReviewScreen from './ReviewScreen';
 import SettingsScreen from './SettingsScreen';
+import BarcodeScanScreen from './BarcodeScanScreen'; 
 import { Ionicons } from '@expo/vector-icons';
 
 const HomeStack = createStackNavigator({
@@ -20,7 +21,7 @@ const ListStack = createStackNavigator({
 
 const CameraStack = createStackNavigator({
   Camera: { screen: CameraScreen },
-  Details: { screen: DetailsScreen },
+  BarcodeScan: { screen: BarcodeScanScreen },
 });
 
 const ReviewStack = createStackNavigator({
