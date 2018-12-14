@@ -13,7 +13,7 @@ export default class CameraScreen extends React.Component {
 }
 
 static navigationOptions = {
-    title: "Ba"
+    title: "Camera"
   };
 
 async componentWillMount() {
