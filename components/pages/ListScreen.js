@@ -4,9 +4,7 @@ import { ListItem, SearchBar } from 'react-native-elements';
 import firebase from 'firebase';
 
 export default class ListScreen extends React.Component {
-
   constructor(props) {
-
     super(props);
     this.state = {
       isLoading: true
@@ -23,7 +21,7 @@ export default class ListScreen extends React.Component {
   };
 
   handleSearch = text => {
-    const result = this.state.dataSource.filter(item => {
+    const result = this.state.data.filter(item => {
       if (item.title.includes(text) || item.type.includes(text)) {
         return item; 
       }
@@ -32,19 +30,17 @@ export default class ListScreen extends React.Component {
                     text: text})
   };
   
-
-  handleClear = () => { 
+  handleOnClear = () => { 
     const clearData = this.state.data
     this.setState({dataSource: clearData, text: ""})
   }; 
 
   componentDidMount() {
-    this.getLiquorsFromApiAsync();
+    this.getArtistFromApiAsync();
   }
 
-  getLiquorsFromApiAsync() {
+  getArtistFromApiAsync() {
     var that = this;
-
     return firebase
     .database()
     .ref('liquors')
@@ -53,17 +49,6 @@ export default class ListScreen extends React.Component {
         //Brug artist ID til at hente fulde navn og erstat dataen. 
         //Da dataen i øvelserne kun er fra Taylor Swift, går vi bare ind i første object i Arrayet, 
         //da vi ved alle objekter har samme artist. Er der forskellige, kan man loope igennem arrayet og erstatte variabler
-        global.numberOfLiquors = 1; 
-
-        liquors.forEach( item => {
-          global.numberOfLiquors ++;
-        }); 
-
-        const allLiquors = liquors.filter( item =>{
-         if(item.notThere = "Ikke eksisterende") {
-          return item; 
-          }
-        })
 
         var typeID = liquors[0].type;
         //Lav et nyt database-kald:
@@ -71,15 +56,13 @@ export default class ListScreen extends React.Component {
         
           that.setState({
             isLoading: false,
+            data: liquors,
             dataSource: liquors,
-            data: allLiquors, 
           });
-          return allLiquors;
+          return liquors;
         });
       });
   }
-
-
 
   render() {
     if (this.state.isLoading) {
@@ -89,14 +72,13 @@ export default class ListScreen extends React.Component {
         </View>
       )
     }
-
     return (
-      <View style = {{flex: 1, BackgroundColor: 'white'}}>
-        <SearchBar
-        lightTheme
+      <View style = {{flex: 1, backgroundColor: 'white'}}>
+        <SearchBar 
+        clearIcon={{ color: 'white' }}
         value={this.state.text}
         onChangeText={this.handleSearch}
-        onClear={this.handleClear}
+        onClear={this.handleOnClear}
         placeholder="Search here..."
         />
         <FlatList
