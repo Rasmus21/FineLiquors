@@ -13,6 +13,8 @@
     "firebase": "^5.5.8",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-barcode-scanner-google": "^1.4.2",
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "react-native-elements": "^0.19.1",
     "react-native-star-rating": "^1.1.0",
     "react-native-stars": "^1.1.5",

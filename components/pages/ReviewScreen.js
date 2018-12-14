@@ -9,24 +9,27 @@ export default class AddNewScreen extends React.Component {
     this.state={
       type: '',
       title: '',
-      error: '',
-      image: 'https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg', 
+      error: '', 
       text: '',
+      searchInput: '', 
       starCount: 2.5
     };
   }
-    writeLiquor(){
+
+
+  writeLiquor(){
       const type = this.state.type;
       const title = this.state.title;
-      const image = this.state.image;
       const text = this.state.text;
+      const starCount = this.state.starCount; 
       firebase.database().ref('liquors/').push({
           type,
           title,
-          image,
-          text
+          text,
+          starCount
       }).then((data)=>{
           alert("Anmeldelse succesfuld");
+          clearText(); 
       }).catch((error)=>{
           //error callback
           console.log('error ' , error)
@@ -51,6 +54,10 @@ export default class AddNewScreen extends React.Component {
               placeholder='Liquor name'
               value={this.state.type}
               onChangeText={type => this.setState({ type })}
+              ref={component => this._textInput = component}
+              writeLiquor={() => {
+                 this.clearText()
+               }}
               />
             </View>
             <View style={styles.input}>
@@ -59,6 +66,10 @@ export default class AddNewScreen extends React.Component {
                 placeholder='Bottle title'
                 value={this.state.title}
                 onChangeText={title => this.setState({ title })}
+                ref={component => this._textInput = component}
+                writeLiquor={() => {
+                   this.clearText()
+                 }}
               />
             </View>
             <View style={styles.input1}>
@@ -66,7 +77,11 @@ export default class AddNewScreen extends React.Component {
                 label='Anmeldelse'
                 placeholder='Review'
                 value={this.state.text}
-                onChangeText={text => this.setState({ text})}
+                onChangeText={text => this.setState({ text })} 
+                ref={component => this._textInput = component}
+                writeLiquor={() => {
+                   this.clearText()
+                 }}
               />
             </View>
             <View style={styles.input2}>
@@ -85,7 +100,7 @@ export default class AddNewScreen extends React.Component {
         <Text style={styles.errorTextStyle}>
           {this.state.error}
         </Text>
-            <Button title='Add your review' onPress={this.writeLiquor.bind(this)}/>
+            <Button title='Submit' onPress={this.writeLiquor.bind(this)}/>
         </View>
     );
   }
