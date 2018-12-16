@@ -16,7 +16,6 @@ export default class AddNewScreen extends React.Component {
     };
   }
 
-
   writeLiquor(){
       const type = this.state.type;
       const title = this.state.title;
