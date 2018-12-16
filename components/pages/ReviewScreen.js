@@ -8,6 +8,7 @@ export default class AddNewScreen extends React.Component {
     super(props);
     this.state={
       type: '',
+      barcode: '',
       title: '',
       error: '', 
       text: '',
@@ -18,11 +19,13 @@ export default class AddNewScreen extends React.Component {
 
   writeLiquor(){
       const type = this.state.type;
+      const barcode = this.state.barcode;
       const title = this.state.title;
       const text = this.state.text;
       const starCount = this.state.starCount; 
       firebase.database().ref('liquors/').push({
           type,
+          barcode,
           title,
           text,
           starCount
@@ -49,7 +52,7 @@ export default class AddNewScreen extends React.Component {
             </View>
             <View style={styles.input}>
               <TextInput
-              label='Hvilen type af sprut drejer det sig om?'
+              label='Which type of liqour is it?'
               placeholder='Liquor name'
               value={this.state.type}
               onChangeText={type => this.setState({ type })}
@@ -61,8 +64,20 @@ export default class AddNewScreen extends React.Component {
             </View>
             <View style={styles.input}>
               <TextInput
-                label='Flaskens Titel'
+                label='Bottle Title'
                 placeholder='Bottle title'
+                value={this.state.title}
+                onChangeText={title => this.setState({ title })}
+                ref={component => this._textInput = component}
+                writeLiquor={() => {
+                   this.clearText()
+                 }}
+              />
+            </View>
+            <View style={styles.input}>
+              <TextInput
+                label='Barcode'
+                placeholder='Barcode number'
                 value={this.state.title}
                 onChangeText={title => this.setState({ title })}
                 ref={component => this._textInput = component}
@@ -73,7 +88,7 @@ export default class AddNewScreen extends React.Component {
             </View>
             <View style={styles.input1}>
               <TextInput
-                label='Anmeldelse'
+                label='Review'
                 placeholder='Review'
                 value={this.state.text}
                 onChangeText={text => this.setState({ text })} 

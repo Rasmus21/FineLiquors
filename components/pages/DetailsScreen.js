@@ -18,9 +18,9 @@ export default class DetailsScreen extends React.Component {
 
     return (
         <View>
-          <Text>Type af alkohol : {type}</Text>
-          <Text>Titlen på flasken er : {title}</Text>
-          <Text>Anmeldelse : {text}</Text>
+          <Text>Type of alchohol : {type}</Text>
+          <Text>Title of the bottle : {title}</Text>
+          <Text>Review : {text}</Text>
         </View>
     );
   }

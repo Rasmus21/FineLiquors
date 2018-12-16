@@ -36,10 +36,10 @@ export default class ListScreen extends React.Component {
   }; 
 
   componentDidMount() {
-    this.getArtistFromApiAsync();
+    this.getLiqourFromApiAsync();
   }
 
-  getArtistFromApiAsync() {
+  getLiqourFromApiAsync() {
     var that = this;
     return firebase
     .database()

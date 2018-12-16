@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View, Alert, AppRegistry } from 'react-native';
 import { Permissions, Camera, MediaLibrary, BarCodeScanner } from 'expo'; 
+import ListScreen from './ListScreen';
+
 
 export default class BarcodeScanScreen extends React.Component { 
     constructor(props) {
@@ -42,7 +44,7 @@ export default class BarcodeScanScreen extends React.Component {
            
         _handlBarCodeRead = ({ type, data }) => {
             alert(`Barcode with the type: ${type} and data: ${data} has been scanned`);
-            } 
+            }
         }
 
   const styles = StyleSheet.create({

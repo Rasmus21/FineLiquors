@@ -5,7 +5,6 @@ import CameraScreen from "./CameraScreen";
 import DetailsScreen from './DetailsScreen';
 import ListScreen from './ListScreen';
 import ReviewScreen from './ReviewScreen';
-import SettingsScreen from './SettingsScreen';
 import BarcodeScanScreen from './BarcodeScanScreen'; 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -29,10 +28,6 @@ const ReviewStack = createStackNavigator({
   Details: { screen: DetailsScreen }, 
 }); 
 
-const SettingsStack = createStackNavigator({
-  Settings: { screen: SettingsScreen },
-  Details: { screen: DetailsScreen },
-});
 
 export default createBottomTabNavigator(
   {
@@ -40,7 +35,6 @@ export default createBottomTabNavigator(
     List: { screen: ListStack },
     Camera: { screen: CameraStack }, 
     Review: { screen: ReviewStack }, 
-    Settings: { screen: SettingsStack },   
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -58,8 +52,6 @@ export default createBottomTabNavigator(
           iconName = 'md-search';
         } else if (routeName === 'Review') {
           iconName = 'ios-create';
-        } else if (routeName === 'Settings') {
-          iconName = 'md-information-circle';
         }
         return <Ionicons name={iconName} size={25} color={tintColor} />;
       },
