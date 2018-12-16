@@ -28,7 +28,7 @@ constructor(props) {
               <View style={styles.getStartedContainer}>
               {this._maybeRenderDevelopmentModeWarning()}
                 <Text style={styles.getStartedText}>
-                  Welcome to FineLiquors, the App for you, who wants to get cheap booze near you.
+                  Welcome to FineLiquors. An App for all peoples opinions about the fine liqours on the shelfs out there. 
                 </Text>
               </View>
               <View>
