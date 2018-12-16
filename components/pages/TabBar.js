@@ -57,11 +57,12 @@ export default createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-    },
-  }
-);
-
+      activeTintColor: '#e5c100',
+      inactiveTintColor: 'white',
+      style: {
+        backgroundColor: '#171F33' // TabBar background
+    }
+}
+});
 
 

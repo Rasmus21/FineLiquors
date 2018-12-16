@@ -16,6 +16,9 @@ export default class AddNewScreen extends React.Component {
       starCount: 2.5
     };
   }
+  static navigationOptions = {
+    title: "Review"
+  };
 
   writeLiquor(){
       const type = this.state.type;
@@ -47,9 +50,6 @@ export default class AddNewScreen extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-            <View>
-              <Text h1 style={styles.headline}>Review</Text>
-            </View>
             <View style={styles.input}>
               <TextInput
               label='Which type of liqour is it?'
@@ -108,7 +108,7 @@ export default class AddNewScreen extends React.Component {
                 maxStars={8}
                 rating={this.state.starCount}
                 selectedStar={(rating) => this.onStarRatingPress(rating)}
-                fullStarColor={'red'}
+                fullStarColor={'#e5c100'}
               />
             </View>
         <Text style={styles.errorTextStyle}>

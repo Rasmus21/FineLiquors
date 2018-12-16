@@ -23,14 +23,13 @@ constructor(props) {
         <View style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'stretch' }}>
           <View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-              <View style={styles.welcomeContainer}>
+            <View style={styles.welcomeContainer}>
               </View>
               <View style={styles.getStartedContainer}>
-              {this._maybeRenderDevelopmentModeWarning()}
                 <Text style={styles.getStartedText}>
                   Welcome to FineLiquors. An App for all peoples opinions about the fine liqours on the shelfs out there. 
                 </Text>
-              </View>
+              </View> 
               <View>
                 <Button title="Log out" onPress={() => firebase.auth().signOut()}></Button>
               </View>
@@ -41,7 +40,7 @@ constructor(props) {
     }
     }
     
-  _maybeRenderDevelopmentModeWarning() {
+ /* _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
       const learnMoreButton = (
         <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
@@ -71,7 +70,7 @@ constructor(props) {
     WebBrowser.openBrowserAsync(
       'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     );
-  };
+  }; */
 }
 
 const styles = StyleSheet.create({
