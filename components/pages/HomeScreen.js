@@ -33,7 +33,7 @@ constructor(props) {
               </View>
               <View style={styles.getStartedContainer}>
                 <Text style={styles.getStartedText}>
-                  Welcome to Cheers. An App for all peoples opinions about the fine liqours on the shelfs out there. 
+                  Welcome to Cheers. An App for YOU and your taste for the finer spirits.  
                 </Text>
               </View> 
               <View>
