@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet,  View, ActivityIndicator, Text } from 'react-native';
+import { StyleSheet,  View, ActivityIndicator, Text, StatusBar } from 'react-native';
 import firebase from 'firebase'; 
 import LoginForm from './components/LoginForm'; 
 import TabBar from './components/pages/TabBar';
@@ -37,13 +37,17 @@ render() {
   switch (this.state.loggedIn) {
     case true:
       return (
+            
+       
         <View style={styles.container}>
-          <TabBar />
+        <StatusBar barStyle = "light-content" hidden = {false} backgroundColor = "#00BCD4" translucent = {true}/>
+                <TabBar /> 
         </View>
       );
     case false: 
       return (
         <View style={styles.container}>
+        
           <LoginForm />
         </View>
       );

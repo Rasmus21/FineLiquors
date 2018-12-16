@@ -13,8 +13,14 @@ export default class CameraScreen extends React.Component {
 }
 
 static navigationOptions = {
-    title: "Camera"
-  };
+    title: "Camera",   
+    headerStyle: {
+      backgroundColor: '#171F33',
+      },
+      headerTitleStyle: {
+      color: '#fff'
+      }
+      };
 
 async componentWillMount() {
   const { status } = await Permissions.askAsync(Permissions.CAMERA);

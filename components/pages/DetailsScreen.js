@@ -5,8 +5,14 @@ import firebase from 'firebase';
 export default class DetailsScreen extends React.Component {
 
   static navigationOptions = {
-    title: "Details"
-  };
+    title: "Details",
+    headerStyle: {
+      backgroundColor: '#171F33',
+      },
+      headerTitleStyle: {
+      color: '#fff'
+      }
+      };
 
 
 

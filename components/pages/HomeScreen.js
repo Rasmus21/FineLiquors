@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { ActivityIndicator, Button, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Button, Platform, ScrollView, StyleSheet, Text, View, StatusBar} from 'react-native';
 import { WebBrowser } from 'expo';
 
 export default class HomeScreen extends React.Component {
@@ -15,6 +15,12 @@ constructor(props) {
 }
   static navigationOptions = {
     title: "Home",
+    headerStyle: {
+      backgroundColor: '#171F33',
+      },
+      headerTitleStyle: {
+      color: '#fff',
+      }
   };
 
   render() {
@@ -27,7 +33,7 @@ constructor(props) {
               </View>
               <View style={styles.getStartedContainer}>
                 <Text style={styles.getStartedText}>
-                  Welcome to FineLiquors. An App for all peoples opinions about the fine liqours on the shelfs out there. 
+                  Welcome to Cheers. An App for all peoples opinions about the fine liqours on the shelfs out there. 
                 </Text>
               </View> 
               <View>

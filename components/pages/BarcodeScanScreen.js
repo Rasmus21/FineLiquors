@@ -15,8 +15,14 @@ export default class BarcodeScanScreen extends React.Component {
       }
 
       static navigationOptions = {
-        title: "BarcodeScan"
-      };
+        title: "BarcodeScan",
+        headerStyle: {
+          backgroundColor: '#171F33',
+          },
+          headerTitleStyle: {
+          color: '#fff'
+          }
+          };
       
       async componentWillMount() {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);

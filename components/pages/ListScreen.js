@@ -17,8 +17,14 @@ export default class ListScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: "List"
-  };
+    title: "List",
+    headerStyle: {
+      backgroundColor: '#171F33',
+      },
+      headerTitleStyle: {
+      color: '#fff'
+      }
+      };
 
   handleSearch = text => {
     const result = this.state.data.filter(item => {

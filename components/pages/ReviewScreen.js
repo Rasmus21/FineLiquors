@@ -17,8 +17,14 @@ export default class AddNewScreen extends React.Component {
     };
   }
   static navigationOptions = {
-    title: "Review"
-  };
+    title: "Review",
+    headerStyle: {
+      backgroundColor: '#171F33',
+      },
+      headerTitleStyle: {
+      color: '#fff'
+      }
+      };
 
   writeLiquor(){
       const type = this.state.type;
@@ -105,7 +111,7 @@ export default class AddNewScreen extends React.Component {
                 fullStar={'ios-star'}
                 halfStar={'ios-star-half'}
                 iconSet={'Ionicons'}
-                maxStars={8}
+                maxStars={5}
                 rating={this.state.starCount}
                 selectedStar={(rating) => this.onStarRatingPress(rating)}
                 fullStarColor={'#e5c100'}
@@ -139,10 +145,10 @@ const styles = StyleSheet.create({
   },
   input: {
     alignItems: 'stretch', 
-    backgroundColor: '#98999A',
+    backgroundColor: '#cbcccd',
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#ddd',
+    borderColor: 'black',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -157,10 +163,10 @@ const styles = StyleSheet.create({
   },
   input1: {
     alignItems: 'stretch', 
-    backgroundColor: '#98999A',
+    backgroundColor: '#cbcccd',
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#ddd',
+    borderColor: 'black',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -176,10 +182,10 @@ const styles = StyleSheet.create({
   },
   input2: {
     alignItems: 'stretch', 
-    backgroundColor: '#98999A',
+    backgroundColor: '#cbcccd',
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#ddd',
+    borderColor: 'black',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -197,7 +203,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5
   },
   buttonText: {
-    color: '#06121C',
+    color: '#ff0000',
     textAlign: 'center',
     fontWeight: '700'
   },
