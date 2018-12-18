@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Button, Text } from 'react-native';
-import firebase from 'firebase';
 
 export default class DetailsScreen extends React.Component {
 
@@ -13,8 +12,6 @@ export default class DetailsScreen extends React.Component {
       color: '#fff'
       }
       };
-
-
 
   render() {
     const {navigation} = this.props;

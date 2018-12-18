@@ -3,7 +3,6 @@ import { StyleSheet,  View, ActivityIndicator, Text, StatusBar } from 'react-nat
 import firebase from 'firebase'; 
 import LoginForm from './components/LoginForm'; 
 import TabBar from './components/pages/TabBar';
-import HomeScreen from './components/pages/HomeScreen';
 
 export default class App extends React.Component {
 constructor(props) {
@@ -13,7 +12,6 @@ constructor(props) {
   }
 }
 
- 
 componentWillMount() {
   firebase.initializeApp({
     apiKey: "AIzaSyCnEaTaSYMYafEqyoJj5HpPDhxUEGGcFhk",
@@ -37,17 +35,15 @@ render() {
   switch (this.state.loggedIn) {
     case true:
       return (
-            
-       
+        //Vi har statusbar for at skaffe os den rigtige farve i toppen af appen 
         <View style={styles.container}>
-        <StatusBar barStyle = "light-content" hidden = {false} backgroundColor = "#00BCD4" translucent = {true}/>
-                <TabBar /> 
+          <StatusBar barStyle = "light-content" hidden = {false} backgroundColor = "#00BCD4" translucent = {true}/>
+          <TabBar /> 
         </View>
       );
     case false: 
       return (
         <View style={styles.container}>
-        
           <LoginForm />
         </View>
       );

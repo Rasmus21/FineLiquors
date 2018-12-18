@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Button, Text, View, Alert, AppRegistry } from 'react-native';
-import { Permissions, Camera, MediaLibrary, BarCodeScanner } from 'expo'; 
+import { StyleSheet, Button, Text, View } from 'react-native';
+import { Permissions, Camera, MediaLibrary } from 'expo'; 
 
 export default class CameraScreen extends React.Component { 
   constructor(props) {

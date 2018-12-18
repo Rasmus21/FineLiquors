@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, FlatList, View, Button, Image } from 'react-native';
+import { ActivityIndicator, FlatList, View, ScrollView, Image } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
 import firebase from 'firebase';
 
@@ -52,9 +52,7 @@ export default class ListScreen extends React.Component {
     .ref('liquors')
     .on('value', function (snapshot) {
         var liquors = Object.values(snapshot.val());
-        //Brug artist ID til at hente fulde navn og erstat dataen. 
-        //Da dataen i øvelserne kun er fra Taylor Swift, går vi bare ind i første object i Arrayet, 
-        //da vi ved alle objekter har samme artist. Er der forskellige, kan man loope igennem arrayet og erstatte variabler
+        //Det er her vi henter vores data fra liquors
 
         var typeID = liquors[0].type;
         //Lav et nyt database-kald:
@@ -80,34 +78,36 @@ export default class ListScreen extends React.Component {
     }
     return (
       <View style = {{flex: 1, backgroundColor: 'white'}}>
-        <SearchBar 
-        clearIcon={{ color: 'white' }}
-        value={this.state.text}
-        onChangeText={this.handleSearch}
-        onClear={this.handleOnClear}
-        placeholder="Search here..."
-        />
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({ item }) =>
-            <ListItem
-              avatar={
-                <Image
-                  style={{ width: 65, height: 65 }}
-                  source={{ uri: item.image }} 
-                />
+        <ScrollView>
+          <SearchBar 
+          clearIcon={{ color: 'white' }}
+          value={this.state.text}
+          onChangeText={this.handleSearch}
+          onClear={this.handleOnClear}
+          placeholder="Search here..."
+          />
+            <FlatList
+              data={this.state.dataSource}
+              renderItem={({ item }) =>
+              <ListItem
+                avatar={
+                  <Image
+                    style={{ width: 65, height: 65 }}
+                    source={{ uri: item.image }} 
+                  />
+                }
+                  title={item.title}
+                  titleStyle={{ color: 'tomato', fontWeight: 'bold' }}
+                  subtitleStyle={{ color: 'tomato' }}
+                  subtitle={item.type}
+                  chevronColor='tomato'
+                  onPress={() => this.props.navigation.navigate('Details', item)}
+                  containerStyle={{ backgroundColor: 'white' }}
+              />
               }
-              title={item.title}
-              titleStyle={{ color: 'tomato', fontWeight: 'bold' }}
-              subtitleStyle={{ color: 'tomato' }}
-              subtitle={item.type}
-              chevronColor='tomato'
-              onPress={() => this.props.navigation.navigate('Details', item)}
-              containerStyle={{ backgroundColor: 'white' }}
+                keyExtractor={(item, index) => index.toString()}
             />
-          }
-          keyExtractor={(item, index) => index.toString()}
-        />
+        </ScrollView>
       </View>
     );
   }

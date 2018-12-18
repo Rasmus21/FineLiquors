@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, Button, Text, View, Alert, AppRegistry } from 'react-native';
-import { Permissions, Camera, MediaLibrary, BarCodeScanner } from 'expo'; 
-import ListScreen from './ListScreen';
-
+import { StyleSheet, Text, View } from 'react-native';
+import { Permissions, Camera, BarCodeScanner } from 'expo'; 
 
 export default class BarcodeScanScreen extends React.Component { 
     constructor(props) {

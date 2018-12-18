@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button, StyleSheet, Text, TextInput} from 'react-native';
+import {View, ScrollView, Button, StyleSheet, Text, TextInput} from 'react-native';
 import firebase from 'firebase';
 import StarRating from 'react-native-star-rating';
 
@@ -56,6 +56,7 @@ export default class AddNewScreen extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+          <ScrollView>
             <View style={styles.input}>
               <TextInput
               label='Which type of liqour is it?'
@@ -84,8 +85,8 @@ export default class AddNewScreen extends React.Component {
               <TextInput
                 label='Barcode'
                 placeholder='Barcode number'
-                value={this.state.title}
-                onChangeText={title => this.setState({ title })}
+                value={this.state.barcode}
+                onChangeText={barcode => this.setState({ barcode })}
                 ref={component => this._textInput = component}
                 writeLiquor={() => {
                    this.clearText()
@@ -117,10 +118,11 @@ export default class AddNewScreen extends React.Component {
                 fullStarColor={'#e5c100'}
               />
             </View>
-        <Text style={styles.errorTextStyle}>
-          {this.state.error}
-        </Text>
-            <Button title='Submit' onPress={this.writeLiquor.bind(this)}/>
+              <Text style={styles.errorTextStyle}>
+              {this.state.error}
+            </Text>
+              <Button title='Submit' onPress={this.writeLiquor.bind(this)}/>
+          </ScrollView>
         </View>
     );
   }
