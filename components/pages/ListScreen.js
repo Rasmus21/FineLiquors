@@ -28,7 +28,7 @@ export default class ListScreen extends React.Component {
 
   handleSearch = text => {
     const result = this.state.data.filter(item => {
-      if (item.title.includes(text) || item.type.includes(text)) {
+      if (item.title.includes(text) || item.title.includes(text)) {
         return item; 
       }
     })
