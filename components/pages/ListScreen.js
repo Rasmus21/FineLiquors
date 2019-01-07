@@ -98,8 +98,9 @@ export default class ListScreen extends React.Component {
                 }
                   title={item.title}
                   titleStyle={{ color: 'tomato', fontWeight: 'bold' }}
-                  subtitleStyle={{ color: 'tomato' }}
-                  subtitle={item.type}
+                  subtitleStyle={{color: 'tomato' }}
+                  //subtitle={item.type}
+                  subtitle={"Rating out of 5: "+ item.starCount}
                   chevronColor='tomato'
                   onPress={() => this.props.navigation.navigate('Details', item)}
                   containerStyle={{ backgroundColor: 'white' }}
